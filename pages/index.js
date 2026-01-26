@@ -1,7 +1,7 @@
 
 function Home() {
     return (
-        <h1>Teste</h1>
+        <h1>Mikarla, eu amo você. Se você me ama, dá uma risadinha!</h1>
     )
 }
 
