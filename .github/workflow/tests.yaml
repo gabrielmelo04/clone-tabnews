@@ -1,0 +1,20 @@
+name: Automated Tests
+
+on: pull_request # Qual evento que ele vai ficar escutando ou fazer -> quando criarem um pull_request ele vai fazer algo e vai escutar ele
+
+jobs: # Grupo de tarefas que serão executadas
+  jest:
+    name: Jest Ubunto
+    runs-on: ubuntu-latest
+    steps: # Passo a passo da tarefa
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      #npm ci -> package-lock.json e npm install -> package.json
+      - run: npm ci   # vai instalar as dependências do projeto sem precisar atualizar alguma dependência, já o npm install ele pode atualizar alguma dependência
+
+      - run: npm test
+
