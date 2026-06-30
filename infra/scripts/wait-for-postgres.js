@@ -4,7 +4,8 @@ const { exec } = require("node:child_process");
 function checkPostgres() {
   exec("docker exec postgres-dev pg_isready --host localhost", handleReturn); // o docker exec postgres-dev pg_isready é o comando que verifica se o Postgres está pronto para aceitar conexões. O nome do container deve ser o mesmo definido no arquivo infra/compose.yaml. Passar a opção do TCP está pronta -> --host localhost(pode ser outro)
 
-  function handleReturn(error, stdout) { // error, stdout, stderr -> são os parametros que o exec retorna
+  function handleReturn(error, stdout) {
+    // error, stdout, stderr -> são os parametros que o exec retorna
     // stdout -> usado para saida padrão do comando, stderr -> usado para saída de erro do comando
     if (stdout.search("accepting connections") === -1) {
       process.stdout.write(".");
