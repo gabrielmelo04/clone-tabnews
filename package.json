@@ -11,7 +11,6 @@
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:eslint:check": "next lint --dir .",
-    "lint:eslint:fix": "next lint --fix",
     "test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand\"",
     "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
