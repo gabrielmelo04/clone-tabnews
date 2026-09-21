@@ -14,7 +14,7 @@ export default async function migrations(request, response) {
     const defaultMigrationsOptions = {
       dbClient,
       dryRun: true,
-      dir: resolve("infra", "migrations"), // Caminho para a pasta de migrações para windwos, linux e mac - para não dar erro coloco o resolve do node path
+      dir: resolve(process.cwd(), "infra", "migrations"),
       direction: "up",
       verbose: true,
       migrationsTable: "pgmigrations", // Nome da tabela onde as migrações serão registradas
