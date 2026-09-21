@@ -13,7 +13,7 @@ export default async function migrations(request, response) {
   try {
     const defaultMigrationsOptions = {
       dbClient,
-      dryRun: true,
+      dryRun: false,
       dir: resolve(process.cwd(), "infra", "migrations"),
       direction: "up",
       verbose: true,
