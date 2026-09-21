@@ -14,7 +14,7 @@ export default async function migrations(request, response) {
     const defaultMigrationsOptions = {
       dbClient,
       dryRun: true,
-      dir: resolve("infra", "migrations"), // Caminho para a pasta de migrações para windwos, linux e mac - para não dar erro coloco o join do node path
+      dir: resolve("infra", "migrations"), // Caminho para a pasta de migrações para windwos, linux e mac - para não dar erro coloco o resolve do node path
       direction: "up",
       verbose: true,
       migrationsTable: "pgmigrations", // Nome da tabela onde as migrações serão registradas
@@ -39,7 +39,7 @@ export default async function migrations(request, response) {
     }
   } catch (error) {
     console.error(error);
-    throw Error("Error running migrations");
+    return response.status(500).json({ error: "Error running migrations" });
   } finally {
     await dbClient.end();
   }
