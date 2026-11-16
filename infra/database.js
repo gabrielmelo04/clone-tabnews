@@ -1,4 +1,5 @@
 import { Client } from "pg";
+import { ServiceError } from "./errors";
 
 async function query(queryObject) {
   let client;
@@ -8,9 +9,11 @@ async function query(queryObject) {
     const result = await client.query(queryObject);
     return result;
   } catch (error) {
-    console.log("\n Erro dentro do catch do database.js:");
-    console.error("Database query error:", error);
-    throw error;
+    const serviceErrorObject = new ServiceError({
+      message: "Erro ao executar a consulta no banco de dados.",
+      cause: error,
+    });
+    throw serviceErrorObject;
   } finally {
     await client?.end(); // Certifique-se de que o cliente seja encerrado mesmo em caso de erro, se existir ele finaliza , se não existir ele não executa essa função
   }
